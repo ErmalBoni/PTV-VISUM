@@ -1,0 +1,64 @@
+"""
+Script Created by Ermal Sylejmani, and ChatGPT - 04/10/2024
+Name: RenameFiles.py
+Batch Rename Files in Directory Script
+
+This script is designed to automatically rename files in a specific directory by 
+replacing a defined text pattern in the filenames. It's useful for batch renaming 
+files, such as switching file names from one convention to another, like "AM_" to "PM_".
+
+Key Features:
+- Replaces specified text in all filenames within the directory where the script is located.
+- Simple customization by changing the `old_text` and `new_text` variables.
+- Utilizes Python's built-in `os` library, so no additional installations are required.
+
+Instructions:
+1. **Place the Script**: Save the script in the directory containing the files you want to rename.
+2. **Define the Text to Replace**:
+   - Update the `old_text` variable with the text you wish to replace.
+   - Set the `new_text` variable with the new text you want to appear in filenames.
+3. **Run the Script**:
+   - Open a terminal or command prompt, navigate to the script's directory, and run:
+     ```bash
+     python rename_files.py
+     ```
+4. **Check the Output**:
+   - The script will rename any files containing `old_text` to use `new_text` instead.
+   - Each rename operation will be printed to the terminal for confirmation.
+
+Customization:
+- **Adjust the Directory**: By default, the script operates in the same directory where it is saved.
+  If you need to rename files in another directory, change the `directory` variable to the path of that folder.
+- **Modify Text Patterns**: Simply edit `old_text` and `new_text` to replace any desired text pattern in the filenames.
+
+Example:
+- To change filenames from "AM_" to "PM_", set:
+  ```python
+  old_text = "AM_"
+  new_text = "PM_"
+"""
+
+import os
+
+# Set the directory where the script is located
+directory = os.path.dirname(os.path.abspath(__file__))
+
+# Text to be replaced and the new text
+old_text = "AM_"
+new_text = "PM_"
+
+# Loop through all files in the current directory
+for filename in os.listdir(directory):
+    # Check if the old text is in the filename
+    if old_text in filename:
+        # Create the new filename by replacing the old text
+        new_filename = filename.replace(old_text, new_text)
+        
+        # Get the full paths for the old and new files
+        old_file = os.path.join(directory, filename)
+        new_file = os.path.join(directory, new_filename)
+        
+        # Rename the file
+        os.rename(old_file, new_file)
+        print(f'Renamed: {filename} -> {new_filename}')
+
