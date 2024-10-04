@@ -1,0 +1,68 @@
+# Script Created by Ermal Sylejmani, and ChatGPT - 04/10/2024
+# Name: Copy&Rename.py
+# Key Features:
+# - Copies a set of files and renames them within the same directory.
+# - Easily customizable: you can add as many files as you want by updating the lists.
+# - Simple usage with clear instructions.
+# - Utilizes built-in Python modules (`shutil` and `os`) for file operations.
+# - Provides confirmation upon successful completion.
+
+# Instructions:
+# 1. **Ensure you have Python 3.x installed** on your system.
+# 2. **Place the script** in the directory containing the files you wish to copy and rename.
+# 3. **Update the `files` and `new_names` lists** in the script to include your specific files:
+#    - Add the original file names to the `files` list.
+#    - Add the corresponding new names to the `new_names` list.
+#    - Make sure both lists are of the same length.
+# 4. **Run the script** using a Python interpreter:
+#    ```bash
+#    python script_name.py
+#    ```
+# 5. **Check the results**:
+#    - The script will create copies of the files listed in `files`, renamed as specified in `new_names`.
+#    - A confirmation message will be printed upon successful completion.
+# 6. **For different projects or additional files**, simply modify the `files` and `new_names` lists accordingly.
+
+# Example:
+# To add more files, update the lists as follows:
+# ```python
+# files = [
+#     "AM_Network.ver",
+#     "AM_Flow.png",
+#     "AM_Matrix.csv",
+#     "AM_ExtraData.dat"
+# ]
+#
+# new_names = [
+#     "PM_Network.ver",
+#     "PM_Flow.png",
+#     "PM_Matrix.csv",
+#     "PM_ExtraData.dat"
+# ]
+# ```
+
+import shutil
+import os
+
+# Original file names
+files = [
+    "AM_Network.ver",
+    "AM_Flow.png",
+    "AM_Matrix.csv"
+]
+
+# New names for the files
+new_names = [
+    "PM_Network.ver",
+    "PM_Flow.png",
+    "PM_Matrix.csv"
+]
+
+# Working directory (current directory)
+working_dir = "./"
+
+# Copying and renaming the files
+for old_name, new_name in zip(files, new_names):
+    shutil.copy(os.path.join(working_dir, old_name), os.path.join(working_dir, new_name))
+
+print("Files have been successfully copied and renamed.")
